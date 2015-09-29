@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Mygov
+        psr4_prefix: Mygov
+        src_path: app
