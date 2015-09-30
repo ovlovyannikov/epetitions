@@ -59,6 +59,13 @@ Route::post('/profile/edit', [
 
 /*Петиції*/
 
+Route::get('/petition/rules', [
+	function () {
+    return view('petition.petrules');
+	},
+	'as' => 'petition.petrules',
+]);
+
 Route::post('/petition/add', [
 	'uses'=> '\Mygov\Http\Controllers\PetitionController@postPetition',
 	'middleware' => ['auth'],
@@ -90,9 +97,4 @@ Route::get('/petition/sign/{petitionId}', [
 Route::get('/petition/{statusId}', [
 	'uses'=> '\Mygov\Http\Controllers\PetitionController@getPetsByStatus',
 	'as' => 'petition.index',
-]);
-
-Route::get('/petition/rules',[
-	'uses'=> '\Mygov\Http\Controllers\PetitionController@getPetitionRules',
-	'as' => 'petition.rules',
 ]);
