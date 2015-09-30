@@ -91,3 +91,8 @@ Route::get('/petition/{statusId}', [
 	'uses'=> '\Mygov\Http\Controllers\PetitionController@getPetsByStatus',
 	'as' => 'petition.index',
 ]);
+
+Route::get('/petition/rules',[
+	'uses'=> '\Mygov\Http\Controllers\PetitionController@getPetitionRules',
+	'as' => 'petition.rules',
+]);

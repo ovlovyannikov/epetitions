@@ -37,6 +37,12 @@ class PetitionController extends Controller
 			return view('petition.add');
 	}
 
+	public function getPetitionRules()
+	{
+
+			return view('petition.rules');
+	}
+
 	public function getItem($petitionId)
 	{
 			$petition = DB::table('mg_petitions')

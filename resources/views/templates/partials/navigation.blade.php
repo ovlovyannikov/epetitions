@@ -15,6 +15,7 @@
                         </form>
 
                         <ul class="nav navbar-nav navbar-right">
+                                <li><a href="{{ route('petition.rules') }}">Правила</a></li>
                                 @if(Auth::check())
                                 <!--{{ route('profile.index', ['username' => Auth::user()->username] ) }}-->
                                 <li><a href="{{ route('profile.edit') }}">{{ Auth::user()->getNameOrUsername() }}</a></li>
