@@ -69,5 +69,14 @@ class User extends Model implements AuthenticatableContract
   {
     return $this->hasMany('Mygov\Models\Sign', 'user_id' );
   }
+  
+  public function hasPetSignUser($petitionId,$userId)
+  {
+	$pet = Petition::find($petitionId);
+    return (bool) $pet->signs
+      ->where('user_id', $userId)
+      ->count();
+  }
+  
 
 }

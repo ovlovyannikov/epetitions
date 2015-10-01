@@ -37,13 +37,15 @@ class PetitionController extends Controller
 
 			return view('petition.add');
 	}
-
+	
+	
 	public function getItem($petitionId)
 	{
 			$petition = DB::table('mg_petitions')
 				->join('mg_users', 'mg_petitions.user_id', '=', 'mg_users.id')
-										 ->select(DB::raw('case when (30 - datediff(now(),mg_petitions.created_at))<0 then 0 else (30 - datediff(now(),mg_petitions.created_at)) end as days,title, mg_petitions.user_id,body,
+										 ->select(DB::raw('case when (' . env('DAYS_REVIEW') . ' - datediff(now(),mg_petitions.created_at))<0 then 0 else (' . env('DAYS_REVIEW') . ' - datediff(now(),mg_petitions.created_at)) end as days,title, mg_petitions.user_id,body,
 										 concat(mg_users.first_name, " ", mg_users.middle_name, " ", mg_users.last_name) as author,
+										 (Select Count(*) From mg_signs where mg_petitions.id = mg_signs.signable_id) as count_signs,
 										 CASE status WHEN 1 THEN "триває збір підписів"
        			 				WHEN 2 THEN "на розгляді" ELSE "з відповіддю"
                      END as status_name,mg_petitions.created_at,mg_petitions.id,answer'))
@@ -53,16 +55,13 @@ class PetitionController extends Controller
 				->join('mg_users', 'mg_signs.user_id', '=', 'mg_users.id')
 				->select(DB::raw('concat(mg_users.first_name, " ", mg_users.middle_name, " ", mg_users.last_name) as author, user_id, mg_signs.created_at'))
 				->where('mg_signs.signable_id', $petitionId)
-				->get();
+				->get();			
 
-			$pet = Petition::find($petitionId);
-
-			return view('petition.item')
-				->with('count_signs',$pet->signs()->count())
+			return view('petition.item')				
 				->with('signs',$signs)
 				->with('petition',$petition );
 	}
-
+	
 	public function getSign($petitionId)
 	{
 				$petition = Petition::find($petitionId);
@@ -84,7 +83,7 @@ class PetitionController extends Controller
 	public function getPetsByStatus($statusId)
 	{
 			$petitions = DB::table('mg_petitions')
-										 ->select(DB::raw('case when (30 - datediff(now(),created_at))<0 then 0 else (30 - datediff(now(),created_at)) end as days,title,
+										 ->select(DB::raw('case when (' . env('DAYS_REVIEW') . ' - datediff(now(),created_at))<0 then 0 else (' . env('DAYS_REVIEW') . ' - datediff(now(),created_at)) end as days,title,
 										 (Select Count(*) From mg_signs where mg_petitions.id = mg_signs.signable_id) as count_signs,
 										 created_at,id,status'))
                      ->where('status', $statusId)
@@ -94,5 +93,6 @@ class PetitionController extends Controller
 			return view('petition.index')
 				->with('petitions',$petitions );
 	}
+	
 
 }

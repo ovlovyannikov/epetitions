@@ -24,7 +24,7 @@
                                 <li><a href="{{ route('auth.signout') }}">Вийти</a></li>
                                 @else
                                 <li><a href="{{ route('auth.signup') }}">Зареєструватися</a></li>
-                                <li><a href="{{ route('auth.signin') }}">Війти</a></li>
+                                <li><a href="{{ route('auth.signin') }}">Вхід</a></li>
                                 @endif
                         </ul>
                 </div>
