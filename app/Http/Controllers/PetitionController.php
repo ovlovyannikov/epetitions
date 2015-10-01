@@ -16,6 +16,7 @@ class PetitionController extends Controller
 		$this->validate($request,[
 			'title' => 'required|max:255',
 			'body' => 'required',
+			/*'g-recaptcha-response' => 'required|captcha',*/
 			]);
 
 			Petition::create([
@@ -28,7 +29,7 @@ class PetitionController extends Controller
 
 			return redirect()
 				->route('home')
-				->with('info','Петицію додано!');
+				->with('info','Петицію додано! Після перевірки вона з’явиться на сайті.');
 	}
 
 	public function getPetition()
@@ -62,8 +63,6 @@ class PetitionController extends Controller
 				->with('petition',$petition );
 	}
 
-
-
 	public function getSign($petitionId)
 	{
 				$petition = Petition::find($petitionId);
@@ -72,8 +71,7 @@ class PetitionController extends Controller
 					return redirect()->route('home');
 				}
 
-				if (Auth::user()->hasSignPetition($petition)) {
-					//dd('');
+				if (Auth::user()->hasSignPetition($petition)) {					
 					return redirect()->back()->with('info','Ви вже підписали!');;
 				}
 
@@ -83,11 +81,6 @@ class PetitionController extends Controller
 				return redirect()->back()->with('info','Вітаю. Ви підписали петицію!' );
 	}
 
-	/*public function getCountSigns($petitionId)
-	{
-				$petition = Petition::find($petitionId);
-				return
-	}*/
 	public function getPetsByStatus($statusId)
 	{
 			$petitions = DB::table('mg_petitions')

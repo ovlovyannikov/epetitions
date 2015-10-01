@@ -68,7 +68,13 @@
 																забезпечення дотримання вимог Закону України «Про звернення громадян».
 														</label>
 						</div>
-
+			
+			<!--
+			<div class="form-group">
+                {!! app('captcha')->display(); !!}
+            </div>
+			-->
+			
             <div class="form-group">
                 <button type="submit" class="btn btn-default">Зареєструватися</button>
             </div>

@@ -20,6 +20,7 @@ class AuthController extends Controller
 			'first_name' => 'required|max:255',
 			'middle_name' => 'required|max:255',
 			'last_name' => 'required|max:255',
+			//'g-recaptcha-response' => 'required|captcha',
 			'email'	 => 'required|unique:mg_users|email|max:255',
 			'password' => 'required|min:6',
 			]);

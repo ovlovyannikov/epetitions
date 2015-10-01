@@ -145,7 +145,7 @@ return [
         Mygov\Providers\AuthServiceProvider::class,
         Mygov\Providers\EventServiceProvider::class,
         Mygov\Providers\RouteServiceProvider::class,
-		//Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+		Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
 
 		//SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
 

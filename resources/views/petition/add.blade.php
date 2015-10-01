@@ -6,7 +6,7 @@
     <div class="col-lg-6">
         <form class="form-vertical" role="form" method="post" action=" {{ route('petition.add') }}">
 
-						<div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+				<div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                 <label for="title" class="control-label">Суть звернення</label>
                 <input type="text" name="title" class="form-control" id="title">
 				@if ($errors->has('title'))
@@ -25,6 +25,11 @@
 				@endif
             </div>
 
+			
+			<!--<div class="form-group">
+                {!! app('captcha')->display(); !!}
+            </div>-->
+			
 
             <div class="form-group">
                 <button type="submit" class="btn btn-default">Додати</button>
