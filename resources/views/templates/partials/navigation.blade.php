@@ -19,7 +19,7 @@
                                 @if(Auth::check())
                                 <!--{{ route('profile.index', ['username' => Auth::user()->username] ) }}-->
                                 <li><a href="{{ route('profile.edit') }}">{{ Auth::user()->getNameOrUsername() }}</a></li>
-                                <li><a href="{{ route('petition.add') }}">Створити петицію</a></li>
+                                <li><a href="{{ route('petition.add') }}"><span class="add_petition">+ Написати петицію</span></a></li>
                                 <!--<li><a href="{{ route('profile.edit') }}">Оновити профіль</a></li>-->
                                 <li><a href="{{ route('auth.signout') }}">Вийти</a></li>
                                 @else

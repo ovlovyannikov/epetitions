@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 			@foreach ($petitions as $petition)
-				@include('petition/index')
+				@include('petition/partials/tablepet')
 			@endforeach
 			</div>
 

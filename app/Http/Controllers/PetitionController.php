@@ -37,8 +37,8 @@ class PetitionController extends Controller
 
 			return view('petition.add');
 	}
-	
-	
+
+
 	public function getItem($petitionId)
 	{
 			$petition = DB::table('mg_petitions')
@@ -55,13 +55,13 @@ class PetitionController extends Controller
 				->join('mg_users', 'mg_signs.user_id', '=', 'mg_users.id')
 				->select(DB::raw('concat(mg_users.first_name, " ", mg_users.middle_name, " ", mg_users.last_name) as author, user_id, mg_signs.created_at'))
 				->where('mg_signs.signable_id', $petitionId)
-				->get();			
+				->get();
 
-			return view('petition.item')				
+			return view('petition.item')
 				->with('signs',$signs)
 				->with('petition',$petition );
 	}
-	
+
 	public function getSign($petitionId)
 	{
 				$petition = Petition::find($petitionId);
@@ -70,7 +70,7 @@ class PetitionController extends Controller
 					return redirect()->route('home');
 				}
 
-				if (Auth::user()->hasSignPetition($petition)) {					
+				if (Auth::user()->hasSignPetition($petition)) {
 					return redirect()->back()->with('info','Ви вже підписали!');;
 				}
 
@@ -88,11 +88,11 @@ class PetitionController extends Controller
 										 created_at,id,status'))
                      ->where('status', $statusId)
 										 ->where('check', 1)
-                     ->get();
+                     ->paginate(env('ITEMS_ON_PAGE'));
 
 			return view('petition.index')
 				->with('petitions',$petitions );
 	}
-	
+
 
 }

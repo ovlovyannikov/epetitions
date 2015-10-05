@@ -24,7 +24,7 @@ class SearchController extends Controller
 									 ->where('title', 'LIKE', "%{$query}%")
 									 ->orWhere('body', 'LIKE', "%{$query}%")
 									 ->orderBy('created_at','desc')
-									 ->get();
+									 ->paginate(env('ITEMS_ON_PAGE'));
 
 		return view('search.results')->with('petitions', $petitions);
 	}

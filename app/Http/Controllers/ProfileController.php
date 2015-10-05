@@ -35,7 +35,7 @@ class ProfileController extends Controller
 				'first_name'=> 'max:50',
 				'last_name'=> 'max:50',
 				'middle_name'=> 'max:50',
-				'email'	 => 'required|unique:mg_users|email|max:255',
+				'email'	 => 'required|email|max:255',
 			]);
 
 			Auth::user()->update([

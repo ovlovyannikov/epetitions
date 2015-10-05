@@ -1,7 +1,7 @@
 @extends('templates.default')
 
 @section('content')
-	<h3>Увійти</h3>
+	<h3>Вхід</h3>
 	<div class="row">
         <div class="col-lg-6">
                 <form class="form-vertical" role="form" method="post" action=" {{ route('auth.signin') }}">
@@ -28,7 +28,7 @@
                                 <button type="submit" class="btn btn-default">Увійти</button>
                         </div>
 						<input type="hidden" name="_token" value="{{ Session::token() }}">
-						
+
                 </form>
         </div>
 </div>

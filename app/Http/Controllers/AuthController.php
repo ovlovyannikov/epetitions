@@ -34,7 +34,7 @@ class AuthController extends Controller
 			]);
 
 			return redirect()
-				->route('home')
+				->route('auth.signin')
 				->with('info','Ваш акаунт створено. Зараз ви можете увійти.');
 	}
 

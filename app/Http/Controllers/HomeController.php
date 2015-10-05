@@ -17,7 +17,7 @@ class HomeController extends Controller
 									 /*->where(DB::raw( '90 - datediff(now(),created_at)' ),'>','0')*/
 									 ->where('check', 1)
 									 ->orderBy('created_at','desc')
-									 ->get();
+									 ->paginate(env('ITEMS_ON_PAGE'));
 
 		/*$pet = Petition::find($petitionId);*/
 
