@@ -63,6 +63,41 @@
                   <span class='st_googleplus_large' displayText='Google +'></span>
               </p>
 
+              <p>
+                @role('moderator')
+                  <p class="text-center navbar-custom">ПЕРЕВІРКА МОДЕРАТОРОМ:</p>
+                  <form class="form-vertical" role="form" method="post" action"{{ route('petition.item' , ['petitionId' => $petition->id]) }}">
+
+                      <div class="form-group{{ $errors->has('check') ? ' has-error' : '' }}">
+                              <label for="check" class="control-label">Перевірено</label>
+                              <input type="text" name="check" class="form-control" id="check"
+                              value="{{ Request::old('check') ?: $petition->check }}" >
+              				@if ($errors->has('check'))
+              					<span class="help-block">{{ $errors->first('check') }}</span>
+              				@endif
+                      </div>
+
+
+                    <div class="form-group{{ $errors->has('answer') ? ' has-error' : '' }}">
+                              <label for="answer" class="control-label">Відповідь</label>
+                              <textarea name="answer" class="form-control" rows="6"
+              										placeholder="Текст петиції" id="answer"
+                                  value="{{ Request::old('answer') ?: $petition->answer }}">
+              								</textarea>
+              				@if ($errors->has('answer'))
+              					<span class="help-block">{{ $errors->first('answer') }}</span>
+              				@endif
+                    </div>
+
+                    <div class="form-group">
+                            <button tupe="submit" class="btn btn-default">Оновити</button>
+                    </div>
+                    <input type="hidden" name="_token" value="{{ Session::token() }}">
+
+                  </form>
+                @endrole
+              </p>
+
       </div>
 </div>
 @stop

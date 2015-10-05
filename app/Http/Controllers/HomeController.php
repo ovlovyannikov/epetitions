@@ -5,11 +5,13 @@ namespace Mygov\Http\Controllers;
 use Auth;
 use DB;
 use Mygov\Models\Petition;
+use Bican\Roles\Models\Role;
 
 class HomeController extends Controller
 {
 	public function index()
 	{
+
 
 		$petitions = DB::table('mg_petitions')
 									 ->select(DB::raw('case when (' . env('DAYS_REVIEW') . ' - datediff(now(),created_at))<0 then 0 else (' . env('DAYS_REVIEW') . ' - datediff(now(),created_at)) end as days,title, body,created_at,id,
@@ -20,6 +22,18 @@ class HomeController extends Controller
 									 ->paginate(env('ITEMS_ON_PAGE'));
 
 		/*$pet = Petition::find($petitionId);*/
+
+		/*$adminRole = Role::create([
+    'name' => 'Admin',
+    'slug' => 'admin',
+    'description' => '',
+    'level' => 1,
+		]);
+
+		$moderatorRole = Role::create([
+    'name' => 'Moderator',
+    'slug' => 'moderator',
+		]);*/
 
 		return view('petition.index')
 			->with('petitions',$petitions );

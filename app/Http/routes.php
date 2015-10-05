@@ -98,3 +98,8 @@ Route::get('/petition/{statusId}', [
 	'uses'=> '\Mygov\Http\Controllers\PetitionController@getPetsByStatus',
 	'as' => 'petition.index',
 ]);
+
+Route::post('/petition/item/{petitionId}', [
+	'uses'=> '\Mygov\Http\Controllers\PetitionController@petitionEdit',
+	'middleware' => ['auth'],
+]);

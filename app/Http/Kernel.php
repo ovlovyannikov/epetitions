@@ -29,5 +29,10 @@ class Kernel extends HttpKernel
         'auth' => \Mygov\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \Mygov\Http\Middleware\RedirectIfAuthenticated::class,
+
+        'role' => \Bican\Roles\Middleware\VerifyRole::class,
+        'permission' => \Bican\Roles\Middleware\VerifyPermission::class,
+        'level' => \Bican\Roles\Middleware\VerifyLevel::class,
+        
     ];
 }

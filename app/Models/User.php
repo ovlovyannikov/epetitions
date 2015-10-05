@@ -5,10 +5,13 @@ namespace Mygov\Models;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Bican\Roles\Traits\HasRoleAndPermission;
+use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
+use Bican\Roles\Models\Role;
 
-class User extends Model implements AuthenticatableContract
+class User extends Model implements AuthenticatableContract, HasRoleAndPermissionContract
 {
-    use Authenticatable;
+    use Authenticatable, HasRoleAndPermission;
 
     protected $table = 'mg_users';
 
@@ -27,6 +30,11 @@ class User extends Model implements AuthenticatableContract
 
 	public function getName()
 	{
+
+    /*$user = User::find(1);
+		$moderatorRole = Role::find(2);
+		$user->attachRole($moderatorRole);*/
+
 		if ($this->first_name && $this->middle_name) {
 			return "{$this->first_name} {$this->middle_name}";
 		}
@@ -69,7 +77,7 @@ class User extends Model implements AuthenticatableContract
   {
     return $this->hasMany('Mygov\Models\Sign', 'user_id' );
   }
-  
+
   public function hasPetSignUser($petitionId,$userId)
   {
 	$pet = Petition::find($petitionId);
@@ -77,6 +85,6 @@ class User extends Model implements AuthenticatableContract
       ->where('user_id', $userId)
       ->count();
   }
-  
+
 
 }

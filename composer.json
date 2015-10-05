@@ -5,11 +5,12 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.5.9",
-        "laravel/framework": "5.1.*",
-		"hybridauth/hybridauth": "dev-master",
-        "marwelln/recaptcha": "dev-master",
-		"anhskohbo/no-captcha": "2.*"
+          "php": ">=5.5.9",
+          "laravel/framework": "5.1.*",
+		      "hybridauth/hybridauth": "dev-master",
+          "marwelln/recaptcha": "dev-master",
+		      "anhskohbo/no-captcha": "2.*",
+          "bican/roles": "2.1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
