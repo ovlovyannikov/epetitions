@@ -10,7 +10,8 @@
 		      "hybridauth/hybridauth": "dev-master",
           "marwelln/recaptcha": "dev-master",
 		      "anhskohbo/no-captcha": "2.*",
-          "bican/roles": "2.1.*"
+          "bican/roles": "2.1.*",
+          "patricktalmadge/bootstrapper": "~5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -77,6 +77,14 @@
               				@endif
                       </div>
 
+                      <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                              <label for="status" class="control-label">Статус</label>
+                              <input type="text" name="status" class="form-control" id="status"
+                              value="{{ Request::old('status') ?: $petition->status }}" >
+                      @if ($errors->has('status'))
+                        <span class="help-block">{{ $errors->first('status') }}</span>
+                      @endif
+                      </div>
 
                     <div class="form-group{{ $errors->has('answer') ? ' has-error' : '' }}">
                               <label for="answer" class="control-label">Відповідь</label>

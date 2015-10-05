@@ -46,9 +46,9 @@
 <h2>Електронні петиції</h2>
 
   <ul class="nav nav-pills">
-    <li role="presentation" ><a href="{{ route('petition.index', ['statusId' => 1]) }}">ТРИВАЄ ЗБІР ПІДПИСІВ</a></li>
-    <li role="presentation" ><a href="{{ route('petition.index', ['statusId' => 2])  }}">НА РОЗГЛЯДІ</a></li>
-    <li role="presentation" ><a href="{{ route('petition.index', ['statusId' => 3])  }}">З ВІДПОВІДДЮ</a></li>
+    <li class={{ Request::segment(2) === '1' ? 'active'  : null }}><a href="{{ route('petition.index', ['statusId' => 1]) }}">ТРИВАЄ ЗБІР ПІДПИСІВ</a></li>
+    <li class={{ Request::segment(2) === '2' ? 'active'  : null }}><a href="{{ route('petition.index', ['statusId' => 2]) }}">НА РОЗГЛЯДІ</a></li>
+    <li class={{ Request::segment(2) === '3' ? 'active'  : null }}><a href="{{ route('petition.index', ['statusId' => 3]) }}">З ВІДПОВІДДЮ</a></li>
   </ul>
 
   @include('petition.partials.tablepet')

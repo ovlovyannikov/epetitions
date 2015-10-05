@@ -48,7 +48,7 @@ class PetitionController extends Controller
 										 (Select Count(*) From mg_signs where mg_petitions.id = mg_signs.signable_id) as count_signs,
 										 CASE status WHEN 1 THEN "триває збір підписів"
        			 				WHEN 2 THEN "на розгляді" ELSE "з відповіддю"
-                     END as status_name,mg_petitions.created_at,mg_petitions.id,answer,mg_petitions.check'))
+                     END as status_name,mg_petitions.created_at,mg_petitions.id,answer,mg_petitions.check,mg_petitions.status'))
                      ->where('mg_petitions.id', $petitionId)
                      ->first();
 			$signs = DB::table('mg_signs')
@@ -98,17 +98,17 @@ class PetitionController extends Controller
 	{
 		$this->validate($request, [
 				'check'=> 'required',
-				'answer'	 => 'required',
 			]);
 
 			$petition = Petition::find($petitionId);
 			$petition->check = $request->input('check');
 			$petition->answer = $request->input('answer');
+			$petition->status = $request->input('status');
 			$petition->save();
 
 				return redirect()
 					->back()
-					->with('info','Петиція перевірена (або додано відповідь)!' );;
+					->with('info','Петиція перевірена (або додано відповідь, або оновлено статус)!' );;
 	}
 
 
