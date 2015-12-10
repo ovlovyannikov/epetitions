@@ -53,6 +53,20 @@
 																			</div>
 
 															</div>
+															
+															<div class="row">
+																			<div class="col-lg-12">
+																					<div class="form-group{{ $errors->has('phone') ? ' has-error': '' }}">
+																								<label for="phone" class="control-label">Мобільний телефон</label>
+																								<input type="text" name="phone" class="form-control" id="phone"
+																								value="{{ Request::old('phone') ?: Auth::user()->phone }}">
+																								@if ($errors->has('phone'))
+																									<span class="help_block">{{ $errors->first('phone') }}</span>
+																								@endif
+																				</div>
+																			</div>
+
+															</div>
 
 															<div class="form-group">
 																			<button tupe="submit" class="btn btn-default">Оновити</button>

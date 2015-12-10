@@ -11,7 +11,8 @@
           "marwelln/recaptcha": "dev-master",
 		      "anhskohbo/no-captcha": "2.*",
           "bican/roles": "2.1.*",
-          "patricktalmadge/bootstrapper": "~5"
+          "patricktalmadge/bootstrapper": "~5",
+          "barryvdh/laravel-dompdf": "0.6.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -14,12 +14,14 @@ class CreatePetitionTable extends Migration
     {
       Schema::create('mg_petitions', function(Blueprint $table) {
           $table->increments('id');
+		      $table->integer('num');
           $table->integer('user_id');
           $table->string('title');
           $table->text('body');
           $table->text('answer')->nullable();
           $table->integer('status');
-          $table->integer('check');
+          $table->integer('checked');
+          $table->integer('done');
           $table->timestamps();
       });
     }

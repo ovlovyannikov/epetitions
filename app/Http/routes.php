@@ -1,5 +1,9 @@
 <?php
 
+Route::controllers([
+   'password' => 'PasswordController',
+]);
+
 Route::get('/', [
 	'uses'=> '\Mygov\Http\Controllers\HomeController@index',
 	'as' => 'home',
@@ -59,6 +63,17 @@ Route::post('/profile/edit', [
 
 /*Петиції*/
 
+Route::get('/petition/itempdfzg/{petitionId}', [
+	'uses'=> '\Mygov\Http\Controllers\PetitionController@createPDFZG',
+	'as' => 'petition.pdfzg'
+]);
+
+Route::get('/petition/delsign/{signId}', [
+	'uses'=> '\Mygov\Http\Controllers\PetitionController@delSign',
+	'as' => 'petition.delsign',
+  'middleware' => ['auth'],
+]);
+
 Route::get('/petition/rules', [
 	function () {
     return view('petition.petrules');
@@ -88,13 +103,22 @@ Route::get('/petition/item/{petitionId}', [
 	'as' => 'petition.item'
 ]);
 
+
+
+Route::get('/petition/itempdf/{petitionId}', [
+	'uses'=> '\Mygov\Http\Controllers\PetitionController@createPDF',
+	'as' => 'petition.pdf'
+]);
+
+
+
 Route::get('/petition/sign/{petitionId}', [
 	'uses'=> '\Mygov\Http\Controllers\PetitionController@getSign',
 	'as' => 'petition.sign',
 	'middleware' => ['auth'],
 ]);
 
-Route::get('/petition/{statusId}', [
+Route::get('/petition/{statusId}/order/{orderId}', [
 	'uses'=> '\Mygov\Http\Controllers\PetitionController@getPetsByStatus',
 	'as' => 'petition.index',
 ]);

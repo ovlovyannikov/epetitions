@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    Options +FollowSymLinks
+	RewriteEngine on
+	RewriteCond %{HTTP_HOST} ^petition.bmr.gov.ua [NC]
+	RewriteRule ^(.*)$ http://petition.bmr.gov.ua/public/$1 [R=301,L]
+
+</IfModule>

@@ -38,7 +38,15 @@
 													</div>
 									</div>
 					</div>
-
+			
+			<div class="form-group{{ $errors->has('organization') ? ' has-error' : '' }}">
+                <label for="organization" class="control-label">Назва організації (якщо від імені організації)</label>
+                <input type="text" name="organization" class="form-control" id="organization" value="{{ Request::old('organization') ?: '' }}">
+				@if ($errors->has('organization'))
+					<span class="help-block">{{ $errors->first('organization') }}</span>
+				@endif
+            </div>
+					
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                 <label for="email" class="control-label">Електронна пошта</label>
                 <input type="text" name="email" class="form-control" id="email" value="{{ Request::old('email') ?: '' }}">
@@ -46,34 +54,57 @@
 					<span class="help-block">{{ $errors->first('email') }}</span>
 				@endif
             </div>
-
-            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                <label for="password" class="control-label">Пароль</label>
-                <input type="password" name="password" class="form-control" id="password" value="{{ Request::old('password') ?: '' }}">
-				@if ($errors->has('password'))
-					<span class="help-block">{{ $errors->first('password') }}</span>
+			
+			<div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                <label for="phone" class="control-label">Мобільний телефон (номер починається з 066,063,050,099 і т.д.)</label>
+                <input type="text" name="phone" class="form-control" id="phone" value="{{ Request::old('phone') ?: '' }}">
+				@if ($errors->has('phone'))
+					<span class="help-block">{{ $errors->first('phone') }}</span>
 				@endif
             </div>
 
-						<label>* Усі поля обов’язкові для заповнення</label>
+			<div class="row">
+
+									<div class="col-lg-6">
+											<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+												<label for="password" class="control-label">Пароль</label>
+												<input type="password" name="password" class="form-control" id="password" value="{{ Request::old('password') ?: '' }}">
+												@if ($errors->has('password'))
+													<span class="help-block">{{ $errors->first('password') }}</span>
+												@endif
+											</div>
+									</div>
+									
+									<div class="col-lg-6">
+											<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+												<label for="password_confirm">Пароль ще раз</label>
+												<input type="password" id="password_confirm" class="form-control" name="password_confirm">
+												@if ($errors->has('password_confirm'))
+													<span class="help-block">{{ $errors->first('password_confirm') }}</span>
+												@endif
+											</div>
+									</div>
+			</div>
+
+						<label>* Усі поля обов’язкові для заповнення (крім назви організації)</label>
 
 						<div class="checkbox">
-														<input type="checkbox" name="data">
+														<input type="checkbox" name="pd" id="pd" checked value=1>
 														<label for="data">
 																Шляхом встановлення цього позначення я, відповідно до Закону України «Про захист персональних даних»,
-																надаю згоду Виконавчому комітету Бердянської міської ради на обробку моїх
+																надаю згоду виконавчому комітету Бердянської міської ради на обробку моїх
 																персональних даних у картотеках та/або за допомогою інформаційно-телекомунікаційної системи
-																бази персональних даних Виконавчого комітету Бердянської міської з метою ідентифікації користувачів сервісу
+																бази персональних даних виконавчого комітету Бердянської міської з метою ідентифікації користувачів сервісу
 																електронних петицій Офіційного інтернет-представництва організації та
 																забезпечення дотримання вимог Закону України «Про звернення громадян».
 														</label>
 						</div>
 			
-			<!--
+			
 			<div class="form-group">
                 {!! app('captcha')->display(); !!}
             </div>
-			-->
+			
 			
             <div class="form-group">
                 <button type="submit" class="btn btn-default">Зареєструватися</button>

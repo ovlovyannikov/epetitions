@@ -141,6 +141,7 @@ return [
         /*
          * Application Service Providers...
          */
+
         Mygov\Providers\AppServiceProvider::class,
         Mygov\Providers\AuthServiceProvider::class,
         Mygov\Providers\EventServiceProvider::class,
@@ -149,6 +150,7 @@ return [
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
         Bican\Roles\RolesServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
 		//SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
 
@@ -226,7 +228,7 @@ return [
         'Tabbable' => 'Bootstrapper\Facades\Tabbable',
         'Table' => 'Bootstrapper\Facades\Table',
         'Thumbnail' => 'Bootstrapper\Facades\Thumbnail',
-
+        'PDF' => 'Barryvdh\DomPDF\Facade',
     ],
 
 ];

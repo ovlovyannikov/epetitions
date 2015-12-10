@@ -19,9 +19,12 @@ class AuthController extends Controller
 			'first_name' => 'required|max:255',
 			'middle_name' => 'required|max:255',
 			'last_name' => 'required|max:255',
-			//'g-recaptcha-response' => 'required|captcha',
+			'g-recaptcha-response' => 'required|captcha',
 			'email'	 => 'required|unique:mg_users|email|max:255',
-			'password' => 'required|min:6',
+			'password' => 'required|min:6',			
+			'password_confirm' => 'required|min:6|same:password',
+			'phone' => 'required|unique:mg_users|max:10|digits:10',
+			'organization' => 'max:255',
 			]);
 
 			User::create([
@@ -30,6 +33,9 @@ class AuthController extends Controller
 				'middle_name' => $request->input('middle_name'),
 				'last_name' => $request->input('last_name'),
 				'password' => bcrypt($request->input('password')),
+				'phone'=> $request->input('phone'),
+				'pd'=> $request->input('pd'),
+				'organization'=> $request->input('organization'),
 			]);
 
 			return redirect()

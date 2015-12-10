@@ -4,10 +4,11 @@
 <div class="row">
       <div class="col-lg-8">
         <div class="petition">
+			<p><span class="navbar-custom">РЕЄСТРАЦІЙНИЙ НОМЕР:</span> {{ $petition->num }}</p>
             <p class="navbar-custom">СУТЬ ЗВЕРНЕННЯ:</p>
             <h3 class="petition_title" style="margin-top: 10px;">{{ $petition->title }}</h3>
             <br />
-            <p><span class="navbar-custom">АВТОР:</span> {{ $petition->author }}</p>
+            <p><span class="navbar-custom">АВТОР:</span> {{ $petition->author }} @role('moderator') (моб.телефон: {{ $petition->phone }}; ел.пошта: {{ $petition->email }}) @endrole</p>
             <p><span class="navbar-custom">СТАТУС:</span> {{ $petition->status_name }}</p>
             <p><span class="navbar-custom">ДАТА ПОЧАТКУ ЗБОРУ ПІДПИСІВ:</span> {{ $petition->created_at }}</p>
             <br />
@@ -16,13 +17,16 @@
             <br />
             @if($petition->answer)
                 <p class="navbar-custom">ВІДПОВІДЬ:</p>
-                <p>{{ $petition->answer }}</p>
+                <p>{!! $petition->answer !!}</p>
                 <br />
             @endif
             <p class="navbar-custom">ПЕРЕЛІК ОСІБ, ЯКІ ПІДПИСАЛИ ЕЛЕКТРОННУ ПЕТИЦІЮ:</p>
             <ul>
               @foreach ($signs as $sign)
-                <li>{{ $sign->author }} (дата підпису: {{ $sign->created_at }})</li>
+                <li>{{ $sign->author }} (дата підпису: {{ $sign->created_at }}@role('moderator'); моб.телефон: {{ $sign->phone }}; ел.пошта: {{ $sign->email }}
+                      <a href="{{ route('petition.delsign', ['signId' => $sign->sign_id]) }}">видалити</a> @endrole)
+
+                </li>
               @endforeach
             <ul>
         </div>
@@ -65,15 +69,19 @@
 
               <p>
                 @role('moderator')
+
+                  <a href="{{ route('petition.pdf', ['petitionId' => $petition->id]) }}"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> PDF </a>
+                  <a href="{{ route('petition.pdfzg', ['petitionId' => $petition->id]) }}"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> PDF (ЗГ)</a>
+
                   <p class="text-center navbar-custom">ПЕРЕВІРКА МОДЕРАТОРОМ:</p>
                   <form class="form-vertical" role="form" method="post" action"{{ route('petition.item' , ['petitionId' => $petition->id]) }}">
 
-                      <div class="form-group{{ $errors->has('check') ? ' has-error' : '' }}">
-                              <label for="check" class="control-label">Перевірено</label>
-                              <input type="text" name="check" class="form-control" id="check"
-                              value="{{ Request::old('check') ?: $petition->check }}" >
-              				@if ($errors->has('check'))
-              					<span class="help-block">{{ $errors->first('check') }}</span>
+                      <div class="form-group{{ $errors->has('checked') ? ' has-error' : '' }}">
+                              <label for="checked" class="control-label">Перевірено</label>
+                              <input type="text" name="checked" class="form-control" id="checked"
+                              value="{{ Request::old('checked') ?: $petition->checked }}" >
+              				@if ($errors->has('checked'))
+              					<span class="help-block">{{ $errors->first('checked') }}</span>
               				@endif
                       </div>
 
@@ -86,11 +94,20 @@
                       @endif
                       </div>
 
+                      <div class="form-group{{ $errors->has('done') ? ' has-error' : '' }}">
+                              <label for="done" class="control-label">Виконано</label>
+                              <input type="text" name="done" class="form-control" id="done"
+                              value="{{ Request::old('done') ?: $petition->done }}" >
+                      @if ($errors->has('done'))
+                        <span class="help-block">{{ $errors->first('done') }}</span>
+                      @endif
+                      </div>
+
                     <div class="form-group{{ $errors->has('answer') ? ' has-error' : '' }}">
                               <label for="answer" class="control-label">Відповідь</label>
-                              <textarea name="answer" class="form-control" rows="6"
+                              <textarea type="text" name="answer" class="form-control" rows="6"
               										placeholder="Текст петиції" id="answer"
-                                  value="{{ Request::old('answer') ?: $petition->answer }}">
+                                  value="{{ Request::old('answer') ? '' : $petition->answer }}">
               								</textarea>
               				@if ($errors->has('answer'))
               					<span class="help-block">{{ $errors->first('answer') }}</span>

@@ -12,8 +12,10 @@ class Petition extends Model
       'title',
       'status',
       'sign',
-      'check',
-      'user_id'
+      'checked',
+      'user_id',
+	    'num',
+      'done'
     ];
 
     public function user()

@@ -24,8 +24,12 @@
                                         <input type="checkbox" name="remember"> Запам’ятати мене
                                 </label>
                         </div>
-                        <div class="form-gorup">
+
+
+												<div class="form-gorup">
                                 <button type="submit" class="btn btn-default">Увійти</button>
+
+																<a href="/password/email">Забули пароль?</a>
                         </div>
 						<input type="hidden" name="_token" value="{{ Session::token() }}">
 

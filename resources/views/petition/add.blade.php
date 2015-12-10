@@ -26,9 +26,9 @@
             </div>
 
 			
-			<!--<div class="form-group">
+			<div class="form-group">
                 {!! app('captcha')->display(); !!}
-            </div>-->
+            </div>
 			
 
             <div class="form-group">

@@ -31,6 +31,8 @@ return array(
     'DummyClasses\\' => array($vendorDir . '/patricktalmadge/bootstrapper/tests/DummyClasses'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'ClassPreloader\\' => array($vendorDir . '/classpreloader/classpreloader/src'),
+    'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
     'Bootstrapper\\' => array($vendorDir . '/patricktalmadge/bootstrapper/src/Bootstrapper'),
+    'Barryvdh\\DomPDF\\' => array($vendorDir . '/barryvdh/laravel-dompdf/src'),
     'Anhskohbo\\NoCaptcha\\' => array($vendorDir . '/anhskohbo/no-captcha/src'),
 );

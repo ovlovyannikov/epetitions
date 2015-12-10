@@ -3,15 +3,17 @@
 namespace Mygov\Models;
 
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Bican\Roles\Traits\HasRoleAndPermission;
 use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 use Bican\Roles\Models\Role;
 
-class User extends Model implements AuthenticatableContract, HasRoleAndPermissionContract
+class User extends Model implements AuthenticatableContract, HasRoleAndPermissionContract, CanResetPasswordContract
 {
-    use Authenticatable, HasRoleAndPermission;
+    use Authenticatable, HasRoleAndPermission, CanResetPassword;
 
     protected $table = 'mg_users';
 
@@ -19,8 +21,11 @@ class User extends Model implements AuthenticatableContract, HasRoleAndPermissio
 		'email',
 		'password',
 		'first_name',
-    'middle_name',
+		'middle_name',
 		'last_name',
+		'phone',
+		'pd',
+		'organization',
 	];
 
     protected $hidden = [

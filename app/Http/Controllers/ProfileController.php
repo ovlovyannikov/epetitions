@@ -36,6 +36,7 @@ class ProfileController extends Controller
 				'last_name'=> 'max:50',
 				'middle_name'=> 'max:50',
 				'email'	 => 'required|email|max:255',
+				'phone' => 'required|unique:mg_users|max:10|digits:10',
 			]);
 
 			Auth::user()->update([
@@ -43,6 +44,7 @@ class ProfileController extends Controller
 					'middle_name'=> $request->input('middle_name'),
 					'last_name'=> $request->input('last_name'),
 					'email'=> $request->input('email'),
+					'phone'=> $request->input('phone'),					
 				]);
 
 				return redirect()
